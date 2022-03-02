@@ -1,3 +1,5 @@
+tests/
+README.md
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -32,7 +34,7 @@ MANIFEST
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
-
+.git
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
@@ -127,12 +129,3 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-
-# Flask static
-app/static
-
-# Dev IDE files and environment
-.bash_profile
-.DS_Store
-app/.DS_Store
-.vscode/settings.json
