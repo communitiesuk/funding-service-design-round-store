@@ -30,3 +30,4 @@ toml==0.10.2
 tomli==2.0.1
 virtualenv==20.13.1
 Werkzeug==2.0.3
+python-dotenv==0.19.2

@@ -40,5 +40,11 @@ fund_round = api.model(
         "deadline": fields.DateTime(
             required=True, description="The round closing date"
         ),
+        "application_url": fields.String(
+            required=True,
+            description=(
+                "The url for the application form for this funding round"
+            ),
+        ),
     },
 )
