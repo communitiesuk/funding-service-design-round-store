@@ -1,14 +1,23 @@
 """The entry point for app.py to start our app
 """
-from apis import api
+from api import api
 from flask import Flask
 
 
 def create_app() -> Flask:
 
     flask_app = Flask(__name__)
+    api.register(flask_app)
+    api.config.title = "Round Store API"
+    api.config.version = "0.1"
+    api.config.description = (
+        "An api for requesting information about funding rounds from the"
+        " funding round store"
+    )
 
-    api.init_app(flask_app)
+    from api.rounds import rounds_bp
+
+    flask_app.register_blueprint(rounds_bp)
 
     return flask_app
 
