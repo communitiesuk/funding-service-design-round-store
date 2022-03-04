@@ -20,6 +20,12 @@ def test_get_rounds(flask_test_client):
             "eligibility_criteria": {"maximum_project_cost": 1000000},
             "opens": "2022-02-01T00:00:01",
             "deadline": "2022-06-01T00:00:00",
+            "application_url": "".join(
+                [
+                    "https://funding-service-design-form-runner",
+                    ".london.cloudapps.digital/funding-application",
+                ]
+            ),
         },
         {
             "fund_id": "funding-service-design",
@@ -28,6 +34,12 @@ def test_get_rounds(flask_test_client):
             "eligibility_criteria": {"maximum_project_cost": 1000000},
             "opens": "2022-06-01T00:00:01",
             "deadline": "2022-08-31T00:00:00",
+            "application_url": "".join(
+                [
+                    "https://funding-service-design-form-runner",
+                    ".london.cloudapps.digital/funding-application",
+                ]
+            ),
         },
         {
             "fund_id": "funding-service-design",
@@ -36,6 +48,12 @@ def test_get_rounds(flask_test_client):
             "eligibility_criteria": {"maximum_project_cost": 10000000},
             "opens": "2022-09-01T00:00:01",
             "deadline": "2022-11-30T00:00:00",
+            "application_url": "".join(
+                [
+                    "https://funding-service-design-form-runner",
+                    ".london.cloudapps.digital/funding-application",
+                ]
+            ),
         },
     ]
     response = flask_test_client.get(
@@ -62,6 +80,12 @@ def test_get_round(flask_test_client):
         "eligibility_criteria": {"maximum_project_cost": 1000000},
         "opens": "2022-02-01T00:00:01",
         "deadline": "2022-06-01T00:00:00",
+        "application_url": "".join(
+            [
+                "https://funding-service-design-form-runner",
+                ".london.cloudapps.digital/funding-application",
+            ]
+        ),
     }
 
     response = flask_test_client.get(
