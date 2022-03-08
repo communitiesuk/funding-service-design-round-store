@@ -7,7 +7,7 @@ import json
 def test_get_rounds(flask_test_client):
     """
     GIVEN Our Api Fund Store
-    WHEN a /rounds/funding-service-design is requested using GET
+    WHEN /fund/funding-service-design is requested using GET
     THEN check that the get response returns the expected data
     If this test succeeds then our apis is set up and returns
     a list of funds as expected.
@@ -17,7 +17,7 @@ def test_get_rounds(flask_test_client):
             "fund_id": "funding-service-design",
             "round_title": "Spring",
             "round_id": "spring",
-            "eligibility_criteria": {"maximum_project_cost": 1000000},
+            "eligibility_criteria": {"max_project_cost": 1200000},
             "opens": "2022-02-01T00:00:01",
             "deadline": "2022-06-01T00:00:00",
         },
@@ -25,7 +25,7 @@ def test_get_rounds(flask_test_client):
             "fund_id": "funding-service-design",
             "round_title": "Summer",
             "round_id": "summer",
-            "eligibility_criteria": {"maximum_project_cost": 1000000},
+            "eligibility_criteria": {"max_project_cost": 1500000},
             "opens": "2022-06-01T00:00:01",
             "deadline": "2022-08-31T00:00:00",
         },
@@ -33,7 +33,7 @@ def test_get_rounds(flask_test_client):
             "fund_id": "funding-service-design",
             "round_title": "Autumn",
             "round_id": "autumn",
-            "eligibility_criteria": {"maximum_project_cost": 10000000},
+            "eligibility_criteria": {"max_project_cost": 10400000},
             "opens": "2022-09-01T00:00:01",
             "deadline": "2022-11-30T00:00:00",
         },
@@ -50,7 +50,7 @@ def test_get_rounds(flask_test_client):
 def test_get_round(flask_test_client):
     """
     GIVEN Our Api Fund Store
-    WHEN a /rounds/funding-service-design/spring is requested using GET
+    WHEN /fund/funding-service-design/spring is requested using GET
     THEN check that the get response returns the expected data
     If this test succeeds then our apis is set up and returns
     detailed information about a single fund
@@ -59,13 +59,13 @@ def test_get_round(flask_test_client):
         "fund_id": "funding-service-design",
         "round_title": "Spring",
         "round_id": "spring",
-        "eligibility_criteria": {"maximum_project_cost": 1000000},
+        "eligibility_criteria": {"max_project_cost": 1200000},
         "opens": "2022-02-01T00:00:01",
         "deadline": "2022-06-01T00:00:00",
     }
 
     response = flask_test_client.get(
-        "/fund/funding-service-design/spring", follow_redirects=True
+        "/fund/funding-service-design/round/spring", follow_redirects=True
     )
     json_data = json.loads(response.data)
     for key, value in json_data.items():

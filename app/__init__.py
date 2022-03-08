@@ -10,12 +10,12 @@ def create_app() -> Flask:
     api.register(flask_app)
     api.config.title = "Round Store API"
     api.config.version = "0.1"
+    api.config.mode = "strict"
     api.config.description = (
-        "An api for requesting information about funding rounds from the"
-        " funding round store"
+        "An api for requesting information about rounds for DLUHC funding"
     )
 
-    from api.rounds import rounds_bp
+    from api.endpoints import rounds_bp
 
     flask_app.register_blueprint(rounds_bp)
 
