@@ -1,30 +1,16 @@
+"""Models for Round"""
 from datetime import datetime
 from typing import List
 
 from pydantic import BaseModel
+from tests.sample_data.rounds import ROUNDS
 
-
-class Query(BaseModel):
-    text: str = "default query strings"
-
-
-class ResponseMessage(BaseModel):
-    message: str = "Error message"
-    status: str = "Status message"
-    code: int = "Response code"
-
-
-class EligibilityCriteria(BaseModel):
-    max_project_cost: int = None
-
-    @staticmethod
-    def from_dict(criteria_dict: dict):
-        return EligibilityCriteria(
-            max_project_cost=criteria_dict.get("max_project_cost")
-        )
+from .eligibility_criteria import EligibilityCriteria
 
 
 class Round(BaseModel):
+    """Pydantic model for rounds"""
+
     fund_id: str
     round_title: str
     round_id: str
@@ -47,6 +33,10 @@ class Round(BaseModel):
                 ),
             }
         }
+
+    @staticmethod
+    def cached_rounds():
+        return ROUNDS
 
     def as_json(self):
         data = {
@@ -76,6 +66,41 @@ class Round(BaseModel):
             application_url=round_dict.get("application_url"),
         )
 
+    @classmethod
+    def list(cls, params: dict, as_json: bool = False):
+        fund_id = params.get("fund_id")
+
+        rounds = []
+        for fund_round in cls.cached_rounds():
+            if fund_round.get("fund_id") == fund_id:
+                rounds.append(Round.from_dict(fund_round))
+
+        if as_json:
+            return [r.as_json() for r in rounds]
+
+        return rounds
+
+    @classmethod
+    def get(cls, params: dict, as_json: bool = False):
+        fund_id = params.get("fund_id")
+        round_id = params.get("round_id")
+
+        for fund_round in cls.cached_rounds():
+            if fund_round.get(
+                "fund_id"
+            ) == fund_id and round_id == fund_round.get("round_id"):
+                found_round = Round.from_dict(fund_round)
+
+                if as_json and found_round:
+                    return found_round.as_json()
+
+                return found_round
+        return None
+
 
 class RoundList(BaseModel):
+    """Pydantic type model for round lists.
+    Currently required for type validation of api requests using Spectree
+    """
+
     __root__: List[Round]
