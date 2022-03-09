@@ -37,9 +37,7 @@ def docs():
     tags=[rounds_tag],
 )
 def list_rounds(fund_id):
-    """Lists all rounds for a given fund.
-    Returns: List of Rounds as json 200
-    OR error_message 404"""
+    """Lists all rounds for a given fund"""
     rounds = Round.list(params={"fund_id": fund_id}, as_json=True)
     if rounds:
         return json_response(rounds)
@@ -52,12 +50,8 @@ def list_rounds(fund_id):
     resp=Response(HTTP_200=Round, HTTP_404=ResponseMessage), tags=[round_tag]
 )
 def get_round(fund_id, round_id):
-    """Gets full details for a funding round.
-    Returns: Round as json 200
-    OR error_message 404"""
-    found_round = Round.get(
-        params={"fund_id": fund_id, "round_id": round_id}, as_json=True
-    )
+    """Gets full details for a funding round"""
+    found_round = Round.get(fund_id, round_id, as_json=True)
     if found_round:
         return found_round
     else:

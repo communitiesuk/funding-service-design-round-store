@@ -34,8 +34,8 @@ class Round(BaseModel):
             }
         }
 
-    @staticmethod
-    def cached_rounds():
+    @classmethod
+    def cached_rounds(cls):
         return ROUNDS
 
     def as_json(self):
@@ -81,9 +81,7 @@ class Round(BaseModel):
         return rounds
 
     @classmethod
-    def get(cls, params: dict, as_json: bool = False):
-        fund_id = params.get("fund_id")
-        round_id = params.get("round_id")
+    def get(cls, fund_id: str, round_id: str, as_json: bool = False):
 
         for fund_round in cls.cached_rounds():
             if fund_round.get(
