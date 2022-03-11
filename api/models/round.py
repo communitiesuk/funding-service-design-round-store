@@ -1,11 +1,12 @@
 """Models for Round"""
+from __future__ import annotations
+
 from datetime import datetime
 from typing import List
 
+from api.models.eligibility_criteria import EligibilityCriteria
 from pydantic import BaseModel
 from tests.sample_data.rounds import ROUNDS
-
-from .eligibility_criteria import EligibilityCriteria
 
 
 class Round(BaseModel):
@@ -36,9 +37,22 @@ class Round(BaseModel):
 
     @classmethod
     def cached_rounds(cls):
+        """
+        Placeholder for persistent data store for use in search
+        (currently just a list of round jsons)
+
+        Returns: a cached list of round data as json
+
+        """
         return ROUNDS
 
     def as_json(self):
+        """
+        Renders a Round instance as a valid json
+
+        Returns: json representation of a Round
+
+        """
         data = {
             "fund_id": self.fund_id,
             "round_title": self.round_title,
@@ -54,6 +68,15 @@ class Round(BaseModel):
 
     @staticmethod
     def from_dict(round_dict: dict):
+        """
+        Creates a Round from a json dict
+
+        Args:
+            round_dict: a json representation of a round
+
+        Returns: Round
+
+        """
         return Round(
             fund_id=round_dict.get("fund_id"),
             round_title=round_dict.get("round_title"),
@@ -67,7 +90,17 @@ class Round(BaseModel):
         )
 
     @classmethod
-    def list(cls, params: dict, as_json: bool = False):
+    def list(cls, params: dict, as_json: bool = False) -> List | None:
+        """
+        Return a filtered list of rounds from cached_rounds()
+
+        Args:
+            params: dict of filters
+            as_json: bool to return as a list of jsons objects
+
+        Returns: List of Rounds, List of jsons, or None
+
+        """
         fund_id = params.get("fund_id")
 
         rounds = []
@@ -81,8 +114,20 @@ class Round(BaseModel):
         return rounds
 
     @classmethod
-    def get(cls, fund_id: str, round_id: str, as_json: bool = False):
+    def get(
+        cls, fund_id: str, round_id: str, as_json: bool = False
+    ) -> Round | dict | None:
+        """
+        Get a single Round from cached_rounds()
 
+        Args:
+            fund_id: The id key of the fund
+            round_id: The id key of the round
+            as_json: bool to return as a list of jsons objects
+
+        Returns: Round, json representation of a round, or None
+
+        """
         for fund_round in cls.cached_rounds():
             if fund_round.get(
                 "fund_id"
