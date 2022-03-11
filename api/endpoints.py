@@ -1,14 +1,13 @@
+import api
+from api.models.response_message import ResponseMessage
+from api.models.round import Round
+from api.models.round import RoundList
+from api.responses import error_response
+from api.responses import json_response
 from flask import Blueprint
 from flask import redirect
 from spectree import Response
 from spectree import Tag
-
-from . import api
-from .models.response_message import ResponseMessage
-from .models.round import Round
-from .models.round import RoundList
-from .responses import error_response
-from .responses import json_response
 
 rounds_bp = Blueprint("rounds_bp", __name__)
 
