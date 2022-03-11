@@ -1,9 +1,9 @@
-import api
 from api.models.response_message import ResponseMessage
 from api.models.round import Round
 from api.models.round import RoundList
 from api.responses import error_response
 from api.responses import json_response
+from app import api
 from flask import Blueprint
 from flask import redirect
 from spectree import Response
