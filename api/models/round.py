@@ -69,7 +69,7 @@ class Round(BaseModel):
     @staticmethod
     def from_dict(round_dict: dict):
         """
-        Creates a Round from a json dict
+        Returns a Round instance from a json dict
 
         Args:
             round_dict: a json representation of a round
