@@ -42,7 +42,7 @@ Enter the virtual environment as described above, then:
 
 # Pipelines
 
-Place brief descriptions of Pipelines here
+These are the current pipelines running on the repo:
 
 * Deploy to Gov PaaS - This is a simple pipeline to demonstrate capabilities.  Builds, tests and deploys a simple python application to the PaaS for evaluation in Dev and Test Only.
 
