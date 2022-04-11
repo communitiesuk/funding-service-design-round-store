@@ -10,7 +10,7 @@ ROUNDS = [
         "application_url": "".join(
             [
                 "https://funding-service-design-form-runner",
-                ".london.cloudapps.digital/funding-application",
+                ".london.cloudapps.digital/baseline-application-questions",
             ]
         ),
     },
@@ -25,7 +25,7 @@ ROUNDS = [
         "application_url": "".join(
             [
                 "https://funding-service-design-form-runner",
-                ".london.cloudapps.digital/funding-application",
+                ".london.cloudapps.digital/baseline-application-questions",
             ]
         ),
     },
