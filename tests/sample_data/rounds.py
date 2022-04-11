@@ -36,8 +36,8 @@ ROUNDS = [
         "deadline": "2022-11-30T00:00:00",
         "application_url": "".join(
             [
-                "https://funding-service-design-form-runner",
-                ".london.cloudapps.digital/funding-application",
+"https://funding-service-design-form-runner.london.cloudapps.digital",
+"/baseline-application-questions",
             ]
         ),
     },
