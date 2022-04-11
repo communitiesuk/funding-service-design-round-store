@@ -18,6 +18,7 @@ class Round(BaseModel):
     eligibility_criteria: EligibilityCriteria = None
     opens: datetime
     deadline: datetime
+    assessment_deadline: datetime
     application_url: str
 
     class Config:
@@ -29,6 +30,7 @@ class Round(BaseModel):
                 "eligibility_criteria": {"max_project_cost": 1000000},
                 "opens": "2022-02-01T00:00:01",
                 "deadline": "2022-06-01T00:00:00",
+                "assessment_deadline": "2022-06-01T00:00:00",
                 "application_url": (
                     "https://application-form-service/fund-id-round-id"
                 ),
@@ -62,6 +64,7 @@ class Round(BaseModel):
             },
             "opens": self.opens.isoformat(),
             "deadline": self.deadline.isoformat(),
+            "assessment_deadline": self.assessment_deadline.isoformat(),
             "application_url": self.application_url,
         }
         return data
@@ -86,6 +89,9 @@ class Round(BaseModel):
             ),
             opens=datetime.fromisoformat(round_dict.get("opens")),
             deadline=datetime.fromisoformat(round_dict.get("deadline")),
+            assessment_deadline=datetime.fromisoformat(
+                round_dict.get("assessment_deadline")
+            ),
             application_url=round_dict.get("application_url"),
         )
 
