@@ -24,7 +24,7 @@ def test_get_rounds(flask_test_client):
             "application_url": "".join(
                 [
                     "https://funding-service-design-form-runner",
-                    ".london.cloudapps.digital/funding-application",
+                    ".london.cloudapps.digital/baseline-application-questions",
                 ]
             ),
         },
@@ -39,7 +39,7 @@ def test_get_rounds(flask_test_client):
             "application_url": "".join(
                 [
                     "https://funding-service-design-form-runner",
-                    ".london.cloudapps.digital/funding-application",
+                    ".london.cloudapps.digital/baseline-application-questions",
                 ]
             ),
         },
@@ -87,7 +87,7 @@ def test_get_round(flask_test_client):
         "application_url": "".join(
             [
                 "https://funding-service-design-form-runner",
-                ".london.cloudapps.digital/funding-application",
+                ".london.cloudapps.digital/baseline-application-questions",
             ]
         ),
     }
