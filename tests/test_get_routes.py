@@ -51,7 +51,7 @@ def test_get_rounds(flask_test_client):
             "application_url": "".join(
                 [
                     "https://funding-service-design-form-runner.london.cloudapps.digital/",
-                    "baseline-application-questions/about-your-organisation",
+                    "baseline-application-questions",
                 ]
             ),
         },
